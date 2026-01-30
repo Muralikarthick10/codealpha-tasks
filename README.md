@@ -1,1 +1,1 @@
-# codealpha-tasks
+# codealpha-ecommerce
