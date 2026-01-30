@@ -1,0 +1,33 @@
+{% extends 'shop/layouts/main.html' %}
+{% load static %}
+
+{% block title %}Collections{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h4 class="mb-3">Categories</h4>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    {% for item in categories %}
+    <div class="col-md-4 col-lg-3">
+        <div class="card my-3">
+            {% if item.image %}
+            <img src="{{ item.image.url }}" class="card-img-top" alt="{{ item.name }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title text-primary">{{ item.name }}</h5>
+                <p class="card-text">{{ item.description|truncatechars:60 }}</p>
+                <a href="{% url 'shop:category_detail' item.slug %}" class="btn btn-primary btn-sm">View Details</a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+        <p>No categories found.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+%

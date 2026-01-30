@@ -1,0 +1,56 @@
+{% extends "shop/layouts/main.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% include "shop/inc/slider.html" %} 
+
+<div class="py-3 bg-light">
+    <div class="container">
+        <h3 class="text-center fw-bold">Trending Products</h3>
+        <hr>
+
+        <div class="row">
+            {% for item in products %}
+            <div class="col-md-3 mb-3">
+
+                <div class="card shadow-sm">
+
+                    {% if item.image %}
+                    <img src="{{ item.image.url }}" class="card-img-top"
+                        style="height:260px;object-fit:contain;">
+                    {% else %}
+                    <img src="{% static 'images/noimage.png' %}" class="card-img-top">
+                    {% endif %}
+
+                    <div class="card-body text-center">
+                        <h6 class="mb-1">{{ item.name }}</h6>
+
+                        <span class="fw-bold text-success">
+                            ₹{{ item.selling_price }}
+                        </span>
+
+                        <span class="text-muted">
+                            <s>₹{{ item.original_price }}</s>
+                        </span>
+
+                        <br>
+
+                        <a href="{% url 'shop:product_detail' item.slug %}"
+                            class="btn btn-primary btn-sm mt-2">
+                            View Details
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
+

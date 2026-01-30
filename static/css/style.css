@@ -1,0 +1,24 @@
+.hot {
+    position: absolute;
+    background: red;
+    color: white;
+    padding: 3px 8px;
+    top: 5px;
+    left: 5px;
+    font-size: 12px;
+    border-radius: 3px;
+}
+.original-price {
+    color: #777;
+    font-size: 14px;
+    margin-left: 5px;
+}
+.selling-price {
+    font-weight: bold;
+    color: green;
+}
+.pic-box {
+    position: relative;
+}
+
+

@@ -1,0 +1,82 @@
+{% extends "shop/layouts/main.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<style>
+.auth-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg,#1f1c2c,#928dab);
+}
+.auth-box {
+  width: 420px;
+  background: white;
+  padding: 35px;
+  border-radius: 18px;
+  animation: fade .6s ease-in-out;
+}
+@keyframes fade { from{opacity:0; transform: scale(.95);} to{opacity:1;} }
+
+.input-group-text {
+  background: #eeeeee;
+  border-radius: 10px 0 0 10px;
+}
+
+.show-pass {
+  cursor: pointer;
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  color: gray;
+}
+</style>
+
+<div class="auth-section">
+    <div class="auth-box shadow-lg">
+
+        <h3 class="text-center fw-bold mb-1">Create Account</h3>
+        <p class="text-center text-muted">Get started with ShopKart 🚀</p>
+        <hr>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {% for field in form %}
+            <div class="mb-3 position-relative">
+
+                <label class="fw-semibold">{{ field.label }}</label>
+
+                <div class="input-group">
+                    <span class="input-group-text">
+                        {% if field.name == "username" %}<i class="fa fa-user"></i>{% endif %}
+                        {% if field.name == "email" %}<i class="fa fa-envelope"></i>{% endif %}
+                        {% if field.name == "password1" or field.name == "password2" %}
+                        <i class="fa fa-lock"></i>{% endif %}
+                    </span>
+
+                    {{ field }}
+                </div>
+
+                {% if field.errors %}
+                <small class="text-danger">{{ field.errors|striptags }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            <button class="btn btn-primary w-100 fw-bold rounded-pill mt-2">Register</button>
+        </form>
+
+        <p class="text-center mt-3">
+            Already have an account? <a href="{% url 'shop:login' %}">Login</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}
+

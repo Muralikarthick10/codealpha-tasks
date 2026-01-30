@@ -1,0 +1,19 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}Cart{% endblock title %}
+{% block content %}
+<h3>Your Cart</h3>
+<table class="table">
+  <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Subtotal</th></tr></thead>
+  <tbody>
+    {% for item in items %}
+      <tr>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.qty }}</td>
+        <td>₹{{ item.product.price }}</td>
+        <td>₹{{ item.sub_total }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<p class="fw-bold">Total: ₹{{ sub_total }}</p>
+{% endblock content %}
